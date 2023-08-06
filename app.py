@@ -8,7 +8,11 @@ app = Flask(__name__)
 @app.route("/",methods=["GET","POST"])
 def home():
     dict_ = {}
-    dict_[request.args.to_dict()["word"]]=request.args.to_dict()["value"]
+
+    #print("origine : " + str(request.headers))
+
+    if len(request.args) != 0:
+        dict_[request.args.to_dict()["word"]]=request.args.to_dict()["value"]
 
     try:
         with open("json_file/DB.json", "r") as json_file:
