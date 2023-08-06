@@ -3,11 +3,11 @@ import json
 
 app = Flask(__name__)
 
-
-
 @app.route("/",methods=["GET","POST"])
 def home():
     dict_ = {}
+    print("OUEEEEEEEEEEEEEE" + request.url)
+
 
     #print("origine : " + str(request.headers))
 
@@ -23,7 +23,6 @@ def home():
         existing_data = []
 
     # Step 2: Convert the JSON data to a Python object (list of dictionaries)
-    print(existing_data)
     # Step 3: Append your new dictionary to the Python object
     existing_data.update(dict_)
 
@@ -38,6 +37,16 @@ def home():
 def exam():
     with open("json_file/DB.json","r+") as json_file:
         dict_ = json.load(json_file)
-        print(dict_)
+        
     return render_template("transaction.html",entries=dict_)
+
+
+@app.route("/exam",methods=["GET","POST"])
+def get_result():
+    with open("json_file/DB.json","r+") as json_file:
+        dict_ = json.load(json_file)
+
+    return render_template("transaction_results.html",entries=list(dict_.values))
+
+
 
