@@ -1,4 +1,7 @@
 
-[
-       {"id": 1, "word": "test", "definition": "reponse_test"}
-]
+    {
+        "id": 1,
+        "word": "test",
+        "definition": "reponse_test"
+    }
+    
