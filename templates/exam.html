@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
   Exam Page
+  <style>
+    #hiddenWord {
+        display: none;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -21,10 +26,21 @@
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.word }}</td>
-                    <td>{{ item.definition }}</td>
+                    
                     
                     <td>
-                        <button class="btn btn-outline btn-info">show the definition</button>
+                        <button onclick="toggleHidden('hiddenWord{{ item.id }}')">Show Hidden Word {{ item.id }}</button>
+                        <p id="hiddenWord1" style="display: none;">{{item.definition}}</p>
+                        <script>
+                            function toggleHidden(elementId) {
+                                const hiddenWord = document.getElementById(elementId);
+                                if (hiddenWord.style.display === "none") {
+                                    hiddenWord.style.display = "block";
+                                } else {
+                                    hiddenWord.style.display = "none";
+                                }
+                            }
+                        </script>
                         
                     </td>
                 </tr>
@@ -36,4 +52,5 @@
         </td>
 
     </table>
+    
 {% endblock %}

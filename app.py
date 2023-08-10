@@ -9,28 +9,34 @@ app = Flask(__name__)
 def home_page():
     return render_template("home.html")
 
+
+
 @app.route("/")
 @app.route("/home",methods=["POST"])
 def register_new_word():
-    """ try:
-        with open("json_file/DB.json", "r") as json_file:
-            existing_data = json.load(json_file)
-    except FileNotFoundError:
-    # If the file doesn't exist yet, start with an empty list
-        existing_data = []
+    
+    with open("json_file/DB.json","r+") as json_file:
 
-    # Step 2: Convert the JSON data to a Python object (list of dictionaries)
+    
+        list_ = json.load(json_file)
 
-    # Step 3: Append your new dictionary to the Python object
-    existing_data.append(requests)
+    if len(list_) > 0:
+    
+        N = max([list_[x]["id"] for x in range(len(list_))])+1
+    else:
+        N=1
 
-    # Step 4: Write the updated Python object back to the JSON file
-    with open("json_file/DB.json", "w") as json_file:
-        json.dump(existing_data, json_file, indent=4)
- """ 
-    print("OOOOOOOOOOOOOOk")
-    print(request.form["word"])
+    new_word = {"id":N,"word":request.form["word"],"definition":request.form["definition"]}
+
+    list_.append(new_word)
+
+    with open("json_file/DB.json","w") as file:
+        json.dump(list_,file)
+
     return render_template("home.html")
+    
+
+
 
 @app.route("/exam",methods=["GET"])
 def exam_page():
