@@ -16,6 +16,8 @@
                 <th scope="col">ID</th>
                 <th scope="col">Word</th>
                 <th scope="col">Your answer</th>
+                <th scope="col">The real answer</th>
+
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -26,11 +28,17 @@
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.word }}</td>
-                    
-                    
+                    <td><p><input type="text" name="given_def"></p></td>
                     <td>
+                        {{item.definition}}
+                    </td>
+                    
+                    
+                    
+                    <!-- <td>
                         <button onclick="toggleHidden('hiddenWord{{ item.id }}')">Show Hidden Word {{ item.id }}</button>
-                        <p id="hiddenWord1" style="display: none;">{{item.definition}}</p>
+                        <p id='hiddenWord{{ item.id }}' style="display: none;">{{item.definition}}</p>
+
                         <script>
                             function toggleHidden(elementId) {
                                 const hiddenWord = document.getElementById(elementId);
@@ -41,8 +49,10 @@
                                 }
                             }
                         </script>
+
                         
-                    </td>
+                    </td> -->
+                
                 </tr>
             {% endfor %}
         </tbody>

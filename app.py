@@ -4,6 +4,7 @@ import requests
 
 app = Flask(__name__)
 
+
 @app.route("/")
 @app.route("/home")
 def home_page():
@@ -17,7 +18,6 @@ def register_new_word():
     
     with open("json_file/DB.json","r+") as json_file:
 
-    
         list_ = json.load(json_file)
 
     if len(list_) > 0:
@@ -37,7 +37,6 @@ def register_new_word():
     
 
 
-
 @app.route("/exam",methods=["GET"])
 def exam_page():
 
@@ -45,6 +44,10 @@ def exam_page():
         dict_ = json.load(json_file)
    
     return render_template("exam.html",items=dict_)
+
+
+
+
 
 
 
