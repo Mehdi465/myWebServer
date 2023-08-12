@@ -30,36 +30,46 @@
                     <td>{{ item.word }}</td>
                     <td><p><input type="text" name="given_def"></p></td>
                     <td>
-                        {{item.definition}}
-                    </td>
-                    
-                    
-                    
-                    <!-- <td>
-                        <button onclick="toggleHidden('hiddenWord{{ item.id }}')">Show Hidden Word {{ item.id }}</button>
-                        <p id='hiddenWord{{ item.id }}' style="display: none;">{{item.definition}}</p>
+                    <p id="{{item.id}}" style="display: none;">{{item.definition}} </p></td>
+                    <td><button onclick="toggleHidden('{{item.id}}')" class="onButton">Show Hidden Word {{item.id}}</button></td>
 
-                        <script>
-                            function toggleHidden(elementId) {
-                                const hiddenWord = document.getElementById(elementId);
-                                if (hiddenWord.style.display === "none") {
-                                    hiddenWord.style.display = "block";
-                                } else {
-                                    hiddenWord.style.display = "none";
-                                }
-                            }
-                        </script>
-
-                        
-                    </td> -->
-                
                 </tr>
             {% endfor %}
         </tbody>
         <td>
-            <button class="btn btn-outline btn-info">show all definition</button>
+            <button id="showButton" onclick="toggleAllButton()">show all definition</button>
             
         </td>
+
+
+            <script>
+
+                function toggleHidden(elementId) {
+                    const hiddenWord = document.getElementById(elementId);
+                    if (hiddenWord.style.display === "none") {
+                        hiddenWord.style.display = "block";
+                    } else {
+                        hiddenWord.style.display = "none";
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Get a reference to the trigger button
+                    var triggerButton = document.getElementById("showButton");
+                    
+                    // Add a click event listener to the trigger button
+                    triggerButton.addEventListener("click", function() {
+                    // Get all buttons with the specified class name
+                    var buttonsToTrigger = document.querySelectorAll(".onButton");
+                    
+                    // Loop through each button and trigger a click event
+                    buttonsToTrigger.forEach(function(button) {
+                        button.click();
+                    });
+                    });
+                });
+            </script>
+       
 
     </table>
     
