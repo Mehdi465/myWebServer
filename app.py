@@ -1,19 +1,24 @@
 from flask import Flask,render_template,request
 import json
-import requests
+
 
 app = Flask(__name__)
 
-
 @app.route("/")
 @app.route("/home")
+def menu_site():
+    return render_template("Home_menu.html")
+
+@app.route("/beagenius/")
+@app.route("/beagenius/home")
 def home_page():
-    return render_template("home.html")
+    return render_template("beagenius_home.html")
 
 
 
-@app.route("/")
-@app.route("/home",methods=["POST"])
+#Cope only with POST requests in the home page.
+@app.route("/beagenius")
+@app.route("/beagenius/home",methods=["POST"])
 def register_new_word():
     
     with open("json_file/DB.json","r+") as json_file:
@@ -33,17 +38,17 @@ def register_new_word():
     with open("json_file/DB.json","w") as file:
         json.dump(list_,file)
 
-    return render_template("home.html")
+    return render_template("beagenius_home.html")
     
 
-
-@app.route("/exam",methods=["GET"])
+# Cope with the exam page, only GET requests
+@app.route("/beagenius/exam",methods=["GET"])
 def exam_page():
 
     with open("json_file/DB.json","r+") as json_file:
         dict_ = json.load(json_file)
    
-    return render_template("exam.html",items=dict_)
+    return render_template("beagenius_exam.html",items=dict_)
 
 
 
