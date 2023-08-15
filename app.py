@@ -4,10 +4,28 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/")
-@app.route("/home")
+
+
+
+# ------------------- Home part -------------------
+@app.route("/",methods=["POST","GET"])
+@app.route("/home",methods=["POST","GET"])
 def menu_site():
-    return render_template("Home_menu.html")
+    if request.method == "POST":
+        if request.form.get("1") == "BeAGenius":
+            return render_template("beagenius_home.html")
+
+    else:
+        return render_template("Home_menu.html")
+
+
+
+
+
+
+
+
+# ------------------- BeAGenius part -------------------
 
 @app.route("/beagenius/")
 @app.route("/beagenius/home")
