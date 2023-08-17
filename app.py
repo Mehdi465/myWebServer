@@ -22,9 +22,6 @@ def menu_site():
 
 
 
-
-
-
 # ------------------- BeAGenius part -------------------
 
 @app.route("/beagenius/")
@@ -35,7 +32,7 @@ def home_page():
 
 
 #Cope only with POST requests in the home page.
-@app.route("/beagenius")
+@app.route("/beagenius/",methods=["POST"])
 @app.route("/beagenius/home",methods=["POST"])
 def register_new_word():
     
