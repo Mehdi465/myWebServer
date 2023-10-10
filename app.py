@@ -5,8 +5,6 @@ import json
 app = Flask(__name__)
 
 
-
-
 # ------------------- Home part -------------------
 @app.route("/",methods=["POST","GET"])
 @app.route("/home",methods=["POST","GET"])
